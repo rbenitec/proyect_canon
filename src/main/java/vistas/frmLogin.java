@@ -58,7 +58,6 @@ public class frmLogin extends javax.swing.JFrame {
         });
 
         txtUsuario.setBackground(new java.awt.Color(235, 207, 178));
-        txtUsuario.setForeground(new java.awt.Color(0, 0, 0));
         txtUsuario.setText("Usuario");
         txtUsuario.setBorder(null);
         txtUsuario.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -68,7 +67,6 @@ public class frmLogin extends javax.swing.JFrame {
         });
 
         txtContra.setBackground(new java.awt.Color(235, 207, 178));
-        txtContra.setForeground(new java.awt.Color(0, 0, 0));
         txtContra.setText("jPasswordField1");
         txtContra.setBorder(null);
         txtContra.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -82,7 +80,6 @@ public class frmLogin extends javax.swing.JFrame {
             }
         });
 
-        jSeparator1.setBackground(new java.awt.Color(255, 255, 255));
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
 
         jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
@@ -146,7 +143,7 @@ public class frmLogin extends javax.swing.JFrame {
                                 .addGap(6, 6, 6)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnIngresa)
-                        .addContainerGap(57, Short.MAX_VALUE))
+                        .addContainerGap(56, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(64, 64, 64)
