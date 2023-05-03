@@ -9,7 +9,7 @@ import model.Proyectil;
 
 public class dataUtil {
 
-    private static final Map<String, String> CONSTANTES_CALCULO;
+    private static final Map<String, Double> CONSTANTES_CALCULO;
 
     private List<Proyectil> proyectil = new ArrayList<>();
     private List<Canon> canones = new ArrayList<>();
@@ -29,9 +29,18 @@ public class dataUtil {
     }
 
     static {
-       final Map<String, String> map = new HashMap<>();
+       final Map<String, Double> map = new HashMap<>();
 
-       map.put("Gravedad", "9.81");
+       map.put("gravedad", 9.81);
+       map.put("oro", 9.81);
+       map.put("plata", 11.81);
+       map.put("hierro", 13.81);
+       map.put("plomo", 15.81);
         CONSTANTES_CALCULO = map;
+    }
+    
+    public static Double getDensidadPorTipo(String value){
+        Double densidad = CONSTANTES_CALCULO.get(value);
+        return densidad != null ? densidad : 0.0 ; 
     }
 }
