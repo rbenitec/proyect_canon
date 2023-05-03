@@ -6,6 +6,7 @@ public class Canon {
     private double LargoDucto;
     private double DiametroInteriorDucto;
     private double capacidadPolvora;
+    private double portencia; // unidad de medidad kW
     private String fechaFabricacion;
 
     public Canon(String tipo, double peso, double LargoDucto, double DiametroInteriorDucto, double capacidadPolvora, String fechaFabricacion) {
@@ -64,13 +65,10 @@ public class Canon {
     public void setFechaFabricacion(String fechaFabricacion) {
         this.fechaFabricacion = fechaFabricacion;
     }
-
+    
     @Override
     public String toString() {
         return "Canon{" + "tipo=" + tipo + ", peso=" + peso + ", LargoDucto=" + LargoDucto + ", DiametroInteriorDucto=" + DiametroInteriorDucto + ", capacidadPolvora=" + capacidadPolvora + ", fechaFabricacion=" + fechaFabricacion + '}';
     }
-    
-    
-    
-    
+     
 }

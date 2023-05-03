@@ -3,7 +3,7 @@ package controlador;
 
 import model.Author;
 import model.CondicionesIniciales;
-import model.ResultadoDisparo;
+import service.ResultadoDisparo;
 
 public class Disparo {
     private Integer idDisparo;
