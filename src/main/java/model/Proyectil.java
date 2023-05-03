@@ -1,7 +1,7 @@
 
 package model;
 
-import util.DataUtil;
+import util.dataUtil;
 
 public class Proyectil {
     private String tipo;
@@ -52,7 +52,7 @@ public class Proyectil {
     }
     
     public double obtenerMasa(double volumen, double densidad, String tipoBala){
-        return volumen * DataUtil.obtenerDensidadPorMaterial(tipoBala);
+        return volumen * dataUtil.getDensidadPorTipo(tipoBala);
     }
     
     public double obtenerVolumen(double diametro){

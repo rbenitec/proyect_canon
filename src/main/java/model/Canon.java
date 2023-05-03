@@ -6,7 +6,7 @@ public class Canon {
     private double LargoDucto;
     private double DiametroInteriorDucto;
     private double capacidadPolvora;
-    private double portencia; // unidad de medidad kW
+    private double potencia; // unidad de medida kW
     private String fechaFabricacion;
 
     public Canon(String tipo, double peso, double LargoDucto, double DiametroInteriorDucto, double capacidadPolvora, String fechaFabricacion) {

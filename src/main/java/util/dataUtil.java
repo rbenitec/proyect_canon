@@ -11,6 +11,8 @@ public class dataUtil {
 
     private static final Map<String, Double> CONSTANTES_CALCULO;
 
+    public static final Double GRAVEDAD = 9.80;
+    
     private List<Proyectil> proyectil = new ArrayList<>();
     private List<Canon> canones = new ArrayList<>();
     

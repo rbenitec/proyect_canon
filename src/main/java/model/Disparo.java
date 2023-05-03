@@ -1,9 +1,9 @@
 
-package controlador;
+package model;
 
 import model.Author;
 import model.CondicionesIniciales;
-import service.ResultadoDisparo;
+import model.ResultadoDisparo;
 
 public class Disparo {
     private Integer idDisparo;
