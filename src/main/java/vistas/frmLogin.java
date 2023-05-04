@@ -6,7 +6,6 @@
 package vistas;
 
 import javax.swing.JOptionPane;
-import vistas.frmApp;
 
 public class frmLogin extends javax.swing.JFrame {
 
@@ -143,7 +142,7 @@ public class frmLogin extends javax.swing.JFrame {
                                 .addGap(6, 6, 6)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnIngresa)
-                        .addContainerGap(56, Short.MAX_VALUE))
+                        .addContainerGap(57, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(64, 64, 64)
@@ -156,8 +155,7 @@ public class frmLogin extends javax.swing.JFrame {
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, -1, 400));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/login.jpg"))); // NOI18N
-        jLabel7.setText("jLabel7");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(-160, -50, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(-160, -50, 760, 550));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 420));
 
