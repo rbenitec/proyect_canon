@@ -16,7 +16,7 @@ public class SimulacionDisparo {
     //Mostrar desplazamineto del proyectil
     private Calculos calculos;
     private ReporteCondicionesIniciales condicionesIniciales;
-    private ReporteResultadoDisparo resultadoDisparo;
+    private ReporteResultadoDisparo reportResultadoDisparo;
     private double velocidadInicial;
     private double angulo;
     
@@ -40,7 +40,9 @@ public class SimulacionDisparo {
             resultadoDisparo.setVelocidadInicialEnY(calculos.Vy());
             resultadoDisparo.setVelocidadInicialEnX(calculos.Vx());
             resultadoDisparo.setStatus(1);
+           
             //Metodo para registrar resultados de calculos
+            reportResultadoDisparo.guardarResultadosDisparo(resultadoDisparo);
             
             return resultadoDisparo;
         }catch(Exception e){
