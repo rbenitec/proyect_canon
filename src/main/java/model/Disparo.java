@@ -8,13 +8,14 @@ import model.ResultadoDisparo;
 public class Disparo {
     private Integer idDisparo;
     private Author author;
-    private CondicionesIniciales ci;
+    private CondicionesIniciales condicionesIniciales;
     private ResultadoDisparo res;
+    private static Integer cont = 1000;
 
     public Disparo(Integer idDisparo, Author author, CondicionesIniciales ci, ResultadoDisparo res) {
-        this.idDisparo = idDisparo;
+        this.idDisparo = cont++;
         this.author = author;
-        this.ci = ci;
+        this.condicionesIniciales = ci;
         this.res = res;
     }
 
@@ -34,12 +35,12 @@ public class Disparo {
         this.author = author;
     }
 
-    public CondicionesIniciales getCi() {
-        return ci;
+    public CondicionesIniciales getCondicionesIniciales() {
+        return condicionesIniciales;
     }
 
     public void setCi(CondicionesIniciales ci) {
-        this.ci = ci;
+        this.condicionesIniciales = ci;
     }
 
     public ResultadoDisparo getRes() {
@@ -55,7 +56,7 @@ public class Disparo {
         StringBuilder sb = new StringBuilder();
         sb.append("Disparo{idDisparo=").append(idDisparo);
         sb.append(", author=").append(author);
-        sb.append(", ci=").append(ci);
+        sb.append(", ci=").append(condicionesIniciales);
         sb.append(", res=").append(res);
         sb.append('}');
         return sb.toString();

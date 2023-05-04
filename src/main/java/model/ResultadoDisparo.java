@@ -10,16 +10,21 @@ public class ResultadoDisparo {
     private double alturaMaximo;
     private double tiempoDeVuelo;
     private double velocidadInicial;
-    private double velocidadInicialXY;
+    private double velocidadInicialEnX;
+    private double velocidadInicialEnY;
     private int status;
 
-    public ResultadoDisparo(String nombreAutor, double alcanceMaximo, double alturaMaximo, double tiempoDeVuelo, double velocidadInicial, double velocidadInicialXY, int status) {
+    public ResultadoDisparo() {
+    }
+
+    public ResultadoDisparo(String nombreAutor, double alcanceMaximo, double alturaMaximo, double tiempoDeVuelo, double velocidadInicial, double velocidadInicialEnX, double velocidadInicialEnY, int status){
         this.nombreAutor = nombreAutor;
         this.alcanceMaximo = alcanceMaximo;
         this.alturaMaximo = alturaMaximo;
         this.tiempoDeVuelo = tiempoDeVuelo;
         this.velocidadInicial = velocidadInicial;
-        this.velocidadInicialXY = velocidadInicialXY;
+        this.velocidadInicialEnX = velocidadInicialEnX;
+        this.velocidadInicialEnY = velocidadInicialEnY;
         this.status = status;
     }
 
@@ -63,12 +68,12 @@ public class ResultadoDisparo {
         this.velocidadInicial = velocidadInicial;
     }
 
-    public double getVelocidadInicialXY() {
-        return velocidadInicialXY;
+    public double getVelocidadInicialEnX() {
+        return velocidadInicialEnX;
     }
 
-    public void setVelocidadInicialXY(double velocidadInicialXY) {
-        this.velocidadInicialXY = velocidadInicialXY;
+    public void setVelocidadInicialEnX(double velocidadInicialEnX) {
+        this.velocidadInicialEnX = velocidadInicialEnX;
     }
 
     public int getStatus() {
@@ -79,11 +84,13 @@ public class ResultadoDisparo {
         this.status = status;
     }
 
-    @Override
-    public String toString() {
-        return "ResultadoDisparo{" + "nombreAutor=" + nombreAutor + ", alcanceMaximo=" + alcanceMaximo + ", alturaMaximo=" + alturaMaximo + ", tiempoDeVuelo=" + tiempoDeVuelo + ", velocidadInicial=" + velocidadInicial + ", velocidadInicialXY=" + velocidadInicialXY + ", status=" + status + '}';
+    public double getVelocidadInicialEnY() {
+        return velocidadInicialEnY;
     }
-    
-    
 
+    public void setVelocidadInicialEnY(double velocidadInicialEnY) {
+        this.velocidadInicialEnY = velocidadInicialEnY;
+    }
+
+   
 }
