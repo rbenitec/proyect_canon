@@ -5,7 +5,7 @@ package model;
 
 public class ResultadoDisparo {
     
-    private String nombreAutor;
+    private String autor;
     private double alcanceMaximo;
     private double alturaMaximo;
     private double tiempoDeVuelo;
@@ -17,8 +17,8 @@ public class ResultadoDisparo {
     public ResultadoDisparo() {
     }
 
-    public ResultadoDisparo(String nombreAutor, double alcanceMaximo, double alturaMaximo, double tiempoDeVuelo, double velocidadInicial, double velocidadInicialEnX, double velocidadInicialEnY, int status){
-        this.nombreAutor = nombreAutor;
+    public ResultadoDisparo(String autor, double alcanceMaximo, double alturaMaximo, double tiempoDeVuelo, double velocidadInicial, double velocidadInicialEnX, double velocidadInicialEnY, int status){
+        this.autor = autor;
         this.alcanceMaximo = alcanceMaximo;
         this.alturaMaximo = alturaMaximo;
         this.tiempoDeVuelo = tiempoDeVuelo;
@@ -29,11 +29,11 @@ public class ResultadoDisparo {
     }
 
     public String getNombreAutor() {
-        return nombreAutor;
+        return autor;
     }
 
     public void setNombreAutor(String nombreAutor) {
-        this.nombreAutor = nombreAutor;
+        this.autor = nombreAutor;
     }
 
     public double getAlcanceMaximo() {

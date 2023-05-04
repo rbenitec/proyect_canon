@@ -1,20 +1,14 @@
 package model;
 
 public class Canon {
+
     private String tipo;
-    private double peso;
-    private double LargoDucto;
-    private double DiametroInteriorDucto;
-    private double capacidadPolvora;
-    private double potencia; // unidad de medida kW
+    private double potencia; // unidad de medida Julios
     private String fechaFabricacion;
 
-    public Canon(String tipo, double peso, double LargoDucto, double DiametroInteriorDucto, double capacidadPolvora, String fechaFabricacion) {
+    public Canon(String tipo, double potencia, String fechaFabricacion) {
         this.tipo = tipo;
-        this.peso = peso;
-        this.LargoDucto = LargoDucto;
-        this.DiametroInteriorDucto = DiametroInteriorDucto;
-        this.capacidadPolvora = capacidadPolvora;
+        this.potencia = potencia;
         this.fechaFabricacion = fechaFabricacion;
     }
 
@@ -26,36 +20,12 @@ public class Canon {
         this.tipo = tipo;
     }
 
-    public double getPeso() {
-        return peso;
+    public double getPotencia() {
+        return potencia;
     }
 
-    public void setPeso(double peso) {
-        this.peso = peso;
-    }
-
-    public double getLargoDucto() {
-        return LargoDucto;
-    }
-
-    public void setLargoDucto(double LargoDucto) {
-        this.LargoDucto = LargoDucto;
-    }
-
-    public double getDiametroInteriorDucto() {
-        return DiametroInteriorDucto;
-    }
-
-    public void setDiametroInteriorDucto(double DiametroInteriorDucto) {
-        this.DiametroInteriorDucto = DiametroInteriorDucto;
-    }
-
-    public double getCapacidadPolvora() {
-        return capacidadPolvora;
-    }
-
-    public void setCapacidadPolvora(double capacidadPolvora) {
-        this.capacidadPolvora = capacidadPolvora;
+    public void setPotencia(double potencia) {
+        this.potencia = potencia;
     }
 
     public String getFechaFabricacion() {
@@ -65,10 +35,10 @@ public class Canon {
     public void setFechaFabricacion(String fechaFabricacion) {
         this.fechaFabricacion = fechaFabricacion;
     }
-    
+
     @Override
     public String toString() {
-        return "Canon{" + "tipo=" + tipo + ", peso=" + peso + ", LargoDucto=" + LargoDucto + ", DiametroInteriorDucto=" + DiametroInteriorDucto + ", capacidadPolvora=" + capacidadPolvora + ", fechaFabricacion=" + fechaFabricacion + '}';
+        return "Canon{" + "tipo=" + tipo + ", potencia=" + potencia + ", fechaFabricacion=" + fechaFabricacion + '}';
     }
-     
+
 }

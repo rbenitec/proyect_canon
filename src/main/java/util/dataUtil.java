@@ -25,9 +25,9 @@ public class dataUtil {
         
         //Data de canoñes
         
-        canones.add(new Canon ("Balistico", 350, 120,30, 3, "10/10/1850"));
-        canones.add(new Canon ("Maritimo", 300, 100,20, 5, "10/10/1855"));
-        canones.add(new Canon ("Campo", 400, 150, 35, 7, "10/10/1860"));
+        canones.add(new Canon ("Balistico", 3000,"10/10/1850"));
+        canones.add(new Canon ("Maritimo", 5000,"10/10/1855"));
+        canones.add(new Canon ("Campo", 2000,"10/10/1860"));
     }
 
     static {
