@@ -12,6 +12,7 @@ public class ReporteCondicionesIniciales {
         listCondIni.add(ci);
     }
 
+    //Getter And Setter
     public List<CondicionesIniciales> getListCondIni() {
         return listCondIni;
     }

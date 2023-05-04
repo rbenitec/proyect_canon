@@ -22,24 +22,32 @@ public class SimulacionDisparo {
     
     public ResultadoDisparo ejecutarDisparo(Disparo disparo){
         ResultadoDisparo resultadoDisparo = new ResultadoDisparo();
-        //Metodo para recuperar condiciones iniciales y guardarlos en una lista.
-        condicionesIniciales.guardarCondicionesIniciales(disparo.getCondicionesIniciales());
+        try{
+            //Metodo para recuperar condiciones iniciales y guardarlos en una lista.
+            condicionesIniciales.guardarCondicionesIniciales(disparo.getCondicionesIniciales());
         
-        //Metodo para ejecutar calculos.
-        angulo = disparo.getCondicionesIniciales().getAngulo();
-        velocidadInicial = calculos.hallarVelocidadInicial(angulo,  
+            //Metodo para ejecutar calculos.
+            angulo = disparo.getCondicionesIniciales().getAngulo();
+            velocidadInicial = calculos.hallarVelocidadInicial(angulo,  
                                                            disparo.getCondicionesIniciales().getAmbiente().getResistenciaAire(), 
                                                            disparo.getCondicionesIniciales().getAmbiente().getDensidadAire(), 
                                                            disparo.getCondicionesIniciales().getAngulo());
-        calculos.setAngulo(angulo);
-        calculos.setV0(velocidadInicial);
-        resultadoDisparo.setAlcanceMaximo(calculos.alcMax());
-        resultadoDisparo.setAlturaMaximo(calculos.h_max());
-        resultadoDisparo.setTiempoDeVuelo(calculos.timeS());
-        resultadoDisparo.setVelocidadInicialEnY(calculos.Vy());
-        resultadoDisparo.setVelocidadInicialEnX(calculos.Vx());
-        //Metodo para registrar resultados de calculos
-        return null;
+            calculos.setAngulo(angulo);
+            calculos.setV0(velocidadInicial);
+            resultadoDisparo.setAlcanceMaximo(calculos.alcMax());
+            resultadoDisparo.setAlturaMaximo(calculos.h_max());
+            resultadoDisparo.setTiempoDeVuelo(calculos.timeS());
+            resultadoDisparo.setVelocidadInicialEnY(calculos.Vy());
+            resultadoDisparo.setVelocidadInicialEnX(calculos.Vx());
+            resultadoDisparo.setStatus(1);
+            //Metodo para registrar resultados de calculos
+            
+            return resultadoDisparo;
+        }catch(Exception e){
+            e.printStackTrace();
+            resultadoDisparo.setStatus(0);
+        }
+        return resultadoDisparo;
     }
     //Crear los Objetos con la data [Author, Canon, Proyectil, Condiciones Iniciales]
     //Generar sus Objetos
