@@ -13,6 +13,8 @@ public class dataUtil {
 
     public static final Double GRAVEDAD = 9.80;
     
+    public static final Double PI = 3.1416;
+    
     private List<Proyectil> proyectil = new ArrayList<>();
     private List<Canon> canones = new ArrayList<>();
     
