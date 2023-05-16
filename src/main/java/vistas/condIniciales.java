@@ -1,8 +1,9 @@
-
 package vistas;
 
-public class condIniciales extends javax.swing.JInternalFrame {
+import controlador.SimulacionDisparo;
 
+public class condIniciales extends javax.swing.JInternalFrame {
+SimulacionDisparo s=new SimulacionDisparo();
     public condIniciales() {
         initComponents();
     }
@@ -184,7 +185,7 @@ public class condIniciales extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_jTextField1ActionPerformed
 
 

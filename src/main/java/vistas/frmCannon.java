@@ -11,6 +11,15 @@ public class frmCannon extends javax.swing.JInternalFrame {
         initComponents();
         llenacbCanon();
         llenacbProy();
+        vacio();
+    }
+
+    private void vacio() {
+        jLabel6.setText("");
+        jLabel13.setText("");
+        jLabel19.setText("");
+        jLabel21.setText("");
+        jLabel31.setText("");
     }
 
     @SuppressWarnings("unchecked")
@@ -72,7 +81,7 @@ public class frmCannon extends javax.swing.JInternalFrame {
         jLabel2.setText("Tipo de proyectil");
 
         cbCannon.setBackground(new java.awt.Color(197, 186, 175));
-        cbCannon.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elegir", "Balistico", "Maritimo", "Campo" }));
+        cbCannon.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elegir" }));
         cbCannon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbCannonActionPerformed(evt);
@@ -217,11 +226,11 @@ public class frmCannon extends javax.swing.JInternalFrame {
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel30)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel31)
                 .addGap(6, 6, 6)
                 .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, 4, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -288,7 +297,7 @@ public class frmCannon extends javax.swing.JInternalFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jPanel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -299,7 +308,7 @@ public class frmCannon extends javax.swing.JInternalFrame {
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 169, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 181, Short.MAX_VALUE)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -352,24 +361,37 @@ public class frmCannon extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cbCannonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCannonActionPerformed
-        
+
+        String selecCanon = (String) cbCannon.getSelectedItem();
+        Canon cSelect = buscarCanonPorNombre(selecCanon);
+        if (cSelect != null) {
+            jLabel31.setText(String.valueOf(cSelect.getPotencia()));
+        } else {
+            jLabel31.setText("");
+        }
     }//GEN-LAST:event_cbCannonActionPerformed
 
     private void cbProyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbProyActionPerformed
-
+        String selecProy = (String) cbProy.getSelectedItem();
+        Proyectil cSelect = buscarProyPorNombre(selecProy);
+        if (cSelect != null) {
+            jLabel31.setText(String.valueOf(cSelect.getDiametro()));
+        } else {
+            jLabel31.setText("");
+        }
     }//GEN-LAST:event_cbProyActionPerformed
 
     private void btnSimulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimulaActionPerformed
         String selecCanon = (String) cbCannon.getSelectedItem();
         Canon cSelect = buscarCanonPorNombre(selecCanon);
-        
+
         String selecProy = (String) cbProy.getSelectedItem();
         Proyectil pSelect = buscarProyPorNombre(selecProy);
-        
-        double potencia =cSelect.getPotencia();
+
+        double potencia = cSelect.getPotencia();
         double resAire = Double.parseDouble(rAire.getText());
         double densAire = Double.parseDouble(dAire.getText());
-        
+
     }//GEN-LAST:event_btnSimulaActionPerformed
 
     private void rAireActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rAireActionPerformed
@@ -377,14 +399,14 @@ public class frmCannon extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_rAireActionPerformed
 
     private void llenacbCanon() {
-        for (Canon canon : d.getCanones()) {
+        for (Canon canon : d.canones) {
             cbCannon.addItem(canon.getTipo());
         }
     }
-    
-    private void llenacbProy(){
-        for (Proyectil proy : d.getProyectil()) {
-            cbCannon.addItem(proy.getTipo());
+
+    private void llenacbProy() {
+        for (Proyectil proy : d.proyectil) {
+            cbProy.addItem(proy.getTipo());
         }
     }
 
@@ -396,7 +418,7 @@ public class frmCannon extends javax.swing.JInternalFrame {
         }
         return null;
     }
-    
+
     private Proyectil buscarProyPorNombre(String seleccion) {
         for (Proyectil c : d.proyectil) {
             if (c.getTipo().equals(seleccion)) {
