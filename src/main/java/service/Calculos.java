@@ -3,18 +3,20 @@ package service;
 
 import util.dataUtil;
 
+
 public class Calculos {
     
     private double angulo;
     private double v0;
    
+    
     public double angulo() {
         return Math.toRadians(angulo);
     }
     
     // Calcular la velocidad inicial del proyectil (se usara en todo le proyecto)
-    public double hallarVelocidadInicial(double masaProy, double resAire, double densAire, double p) {
-        return Math.sqrt((2 * p) / (masaProy * resAire * densAire * seccTransProy()));
+    public double hallarVelocidadInicial(double masaProy, double resAire, double densAire, double p, double diametro) {
+        return Math.sqrt((2 * p) / (masaProy * resAire * densAire * seccTransProy(diametro)));
     }
 
     // Alcance máximo en metros || Se usara Velocidad inicial en X y Y
@@ -34,8 +36,8 @@ public class Calculos {
     }
     
     // Sección transversal del proyectil || se asume que el radio del proyectil es 0.01m pq se asume que su diametro es de 2cm
-    private double seccTransProy() {
-        return Math.PI * Math.pow(0.01, 2); //Math.pow eleva el 0.01(radio) al cuadrado
+    private double seccTransProy(double diametro) {
+        return Math.PI * Math.pow(diametro/2, 2); //Math.pow eleva el 0.01(radio) al cuadrado
     }
     
     // Calcular las velocidades iniciales en X y Y

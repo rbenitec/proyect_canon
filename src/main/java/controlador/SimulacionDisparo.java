@@ -31,7 +31,8 @@ public class SimulacionDisparo {
             velocidadInicial = calculos.hallarVelocidadInicial(angulo,  
                                                            disparo.getCondicionesIniciales().getAmbiente().getResistenciaAire(), 
                                                            disparo.getCondicionesIniciales().getAmbiente().getDensidadAire(), 
-                                                           disparo.getCondicionesIniciales().getAngulo());
+                                                           disparo.getCondicionesIniciales().getAngulo(),
+                                                           disparo.getCondicionesIniciales().getProyectil().getDiametro());
             calculos.setAngulo(angulo);
             calculos.setV0(velocidadInicial);
             resultadoDisparo.setAlcanceMaximo(calculos.alcMax());

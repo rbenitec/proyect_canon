@@ -13,7 +13,9 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
- 
+
+import service.Calculos; 
+import model.Proyectil;
 /**
  *
  * @author andreas
@@ -55,13 +57,15 @@ public class SimulaTiro extends JFrame {
     private List<Point> points = new ArrayList<Point>();
  
     class SimulaTiroThread extends Thread {
- 
+        
+        Calculos c=new Calculos();
+        
         public void run() {
- 
+            
  
         double gravity = 9.81;
-        double v0 = 80;
- 
+        double v0=80;
+        
         double sinTheta = Math.sin(Math.toRadians(theta));
         double cosTheta = Math.cos(Math.toRadians(theta));
  
