@@ -4,14 +4,36 @@
  * and open the template in the editor.
  */
 package vistas;
-public class frmApp extends javax.swing.JFrame {
 
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import javax.swing.JPanel;
+
+public class frmApp extends javax.swing.JFrame {
+    
+    int x = 100;
+    int y = 100;
+    int giro = 0;
+    int ancho = 100;
+    int alto =100;
     /**
      * Creates new form frmInicio
      */
     public frmApp() {
+//        this.setContentPane(new Graficos());
+//        this.setLocationRelativeTo(null);
         initComponents();
+        inicio();
     }
+    
+    void inicio(){
+        x= (int)zona.getX()+zona.getWidth();
+        y= (int)zona.getY()+zona.getHeight();
+        System.out.println("Campo X: "+x +"\t"+ "Campo Y: "+y);
+    }
+   
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -23,6 +45,7 @@ public class frmApp extends javax.swing.JFrame {
     private void initComponents() {
 
         escritorio = new javax.swing.JDesktopPane();
+        zona = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -35,15 +58,34 @@ public class frmApp extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        javax.swing.GroupLayout zonaLayout = new javax.swing.GroupLayout(zona);
+        zona.setLayout(zonaLayout);
+        zonaLayout.setHorizontalGroup(
+            zonaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 721, Short.MAX_VALUE)
+        );
+        zonaLayout.setVerticalGroup(
+            zonaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 409, Short.MAX_VALUE)
+        );
+
+        escritorio.setLayer(zona, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
         javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
         escritorio.setLayout(escritorioLayout);
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 752, Short.MAX_VALUE)
+            .addGroup(escritorioLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(zona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 457, Short.MAX_VALUE)
+            .addGroup(escritorioLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(zona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         jMenu4.setText("Salir");
@@ -155,7 +197,10 @@ public class frmApp extends javax.swing.JFrame {
             public void run() {
                 new frmApp().setVisible(true);
             }
+
+           
         });
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -169,5 +214,21 @@ public class frmApp extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JPanel zona;
     // End of variables declaration//GEN-END:variables
+    public class Graficos extends JPanel{
+
+        @Override
+        public void paint(Graphics g) {
+            super.paint(g); //To change body of generated methods, choose Tools | Templates.
+            Graphics2D gd = (Graphics2D)g;
+            gd.translate(x, y);
+            gd.rotate(Math.toRadians(giro));
+            gd.setColor(Color.red);
+            gd.fillRect(0, 0, ancho, alto);
+        }
+        
+        
+    }
+
 }

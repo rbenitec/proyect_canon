@@ -103,7 +103,7 @@ public class SimulaTiro extends JFrame {
     }
  
     public void paint(Graphics g) {
- 
+// 
         Graphics2D g2 = (Graphics2D) g;
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
@@ -111,9 +111,10 @@ public class SimulaTiro extends JFrame {
         Dimension d = this.getSize();
  
         super.paintComponents(g);
- 
+// 
         AffineTransform transform = new AffineTransform();
         transform.rotate(Math.toRadians(-theta), 15, 415);
+
         AffineTransform old = g2.getTransform();
         g2.transform(transform);
  
@@ -130,6 +131,7 @@ public class SimulaTiro extends JFrame {
         g2.setColor(Color.RED);
  
         g2.drawLine(15, 415, 100, 415);
+        
  
         g2.setTransform(old);
         g2.setColor(Color.GRAY);

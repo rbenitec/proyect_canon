@@ -22,7 +22,7 @@ public class dataUtil {
         
         //Data de proyectol
         proyectil.add(new Proyectil("Naval", 110.25, 50.56, "Hierro"));
-        proyectil.add(new Proyectil("Aereo", 150.25, 200.56, "Metal"));
+        proyectil.add(new Proyectil("Aereo", 150.25, 200.56, "oro"));
         proyectil.add(new Proyectil("Terrestre", 60.5, 20.56, "Plomo"));
         
         //Data de canoñes
@@ -47,4 +47,22 @@ public class dataUtil {
         Double densidad = CONSTANTES_CALCULO.get(value);
         return densidad != null ? densidad : 0.0 ; 
     }
+
+    public List<Proyectil> getProyectil() {
+        return proyectil;
+    }
+
+    public void setProyectil(List<Proyectil> proyectil) {
+        this.proyectil = proyectil;
+    }
+
+    public List<Canon> getCanones() {
+        return canones;
+    }
+
+    public void setCanones(List<Canon> canones) {
+        this.canones = canones;
+    }
+    
+    
 }
