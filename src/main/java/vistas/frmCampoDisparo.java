@@ -6,6 +6,7 @@
 package vistas;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Polygon;
@@ -441,17 +442,25 @@ public class frmCampoDisparo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSimularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimularActionPerformed
+        List<Point> points = new ArrayList<>();
+               
+        DibujarTrayectoria obj = new DibujarTrayectoria();
+        points = obj.obtenerPuntos(giro, velocidadInicial);
         
-        limpiarCampos();
-        simularDisparo();
-        mostrarImagen();
-        points.removeIf(p -> p.getX()>=0);
+        points.forEach(p -> System.out.println(p.toString()));
+        
+        DibujarTrayectoria.dibujarTrayectoria(campoDisparo.getGraphics(), points);
+        
+        //FiguraBase.dibujarLinea(campoDisparo.getGraphics(), 100, 100, 200, 200);
+//        limpiarCampos();
+//        simularDisparo();
+//        mostrarImagen();
+//        points.removeIf(p -> p.getX()>=0);
 //        lblDistanciaMaxima.setText(String.format("%.2f m", distanciaMaxima));
 //        lblAlturaMaxima.setText(String.format("%.2f m", alturaMaxima));
     }//GEN-LAST:event_btnSimularActionPerformed
 
     private void cbxTipoCanonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxTipoCanonActionPerformed
-        
         obj.getCanones();
         String tipoCanon = cbxTipoCanon.getSelectedItem().toString();
         for(Canon c : obj.getCanones()){
@@ -459,9 +468,6 @@ public class frmCampoDisparo extends javax.swing.JFrame {
                 txtPotencia.setText(c.getPotencia()+"");
             }
         }
-        
-        
-        
     }//GEN-LAST:event_cbxTipoCanonActionPerformed
 
     private void cbxTipoProyectilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxTipoProyectilActionPerformed
@@ -545,6 +551,7 @@ public class frmCampoDisparo extends javax.swing.JFrame {
             transform.rotate(Math.toRadians(-giro), 21, y-31+15);
             AffineTransform old = gd.getTransform();
             gd.transform(transform);
+            Dimension d = this.getSize();
             
 //            gd.translate(x, y);
 
@@ -564,6 +571,11 @@ public class frmCampoDisparo extends javax.swing.JFrame {
             gd.setTransform(old);
             gd.setColor(Color.BLACK);
             gd.fill(new Rectangle2D.Double(x, y, 31, 10));
+            
+            gd.setColor(Color.WHITE);
+ 
+            gd.drawLine(21, 0, 21, (int) d.getHeight());
+            gd.drawLine(0, 348, (int) d.getWidth(), 350);
         }
     }
     
