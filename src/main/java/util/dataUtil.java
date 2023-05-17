@@ -13,15 +13,18 @@ public class dataUtil {
 
     public static final Double GRAVEDAD = 9.80;
 
+
     public List<Proyectil> proyectil = new ArrayList<>();
     public List<Canon> canones = new ArrayList<>();
-
-    public dataUtil() {
+    public static final Double PI = 3.1416;
+    
+    public dataUtil (){
+        
 
         //Data de proyectol
         //                          Tipo, peso, diametro, material
         proyectil.add(new Proyectil("Naval", 110.25, 50.56, "Hierro"));
-        proyectil.add(new Proyectil("Aereo", 150.25, 200.56, "Metal"));
+        proyectil.add(new Proyectil("Aereo", 150.25, 200.56, "oro"));
         proyectil.add(new Proyectil("Terrestre", 60.5, 20.56, "Plomo"));
 
         //Data de canoñes       tipo        potencia    fecha
@@ -53,5 +56,13 @@ public class dataUtil {
         return proyectil;
     }
 
+    public void setProyectil(List<Proyectil> proyectil) {
+        this.proyectil = proyectil;
+    }
+
+    public void setCanones(List<Canon> canones) {
+        this.canones = canones;
+    }
+   
     
 }
