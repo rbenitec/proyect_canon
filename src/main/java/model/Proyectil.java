@@ -1,5 +1,6 @@
 package model;
 
+import java.text.DecimalFormat;
 import util.dataUtil;
 
 public class Proyectil {
@@ -16,7 +17,7 @@ public class Proyectil {
         this.peso = peso;
         this.diametro = diametro;
         this.material = material;
-        this.densidad = dataUtil.getDensidadPorTipo(tipo);
+        this.densidad = dataUtil.getDensidadPorTipo(material);
         this.masa = calcularMasa();
 
     }
@@ -58,15 +59,23 @@ public class Proyectil {
     }
 
     public double calcularMasa() {
-        return calcularVolumen() * densidad;
+        double volumen = calcularVolumen();
+    double masa = (peso * 9.81) / (densidad * volumen);
+
+    DecimalFormat decimalFormat = new DecimalFormat("#.00");
+    String masaFormateada = decimalFormat.format(masa);
+    double masaRedondeada = Double.parseDouble(masaFormateada);
+
+    return masaRedondeada;
     }
 
     public double calcularVolumen() {
-        return (4 / 3) * Math.PI * Math.pow((diametro / 2), 3);
+        double radio= diametro/2;
+        return (4 / 3) * Math.PI * Math.pow(radio, 3);
     }
     
     
-
+    
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -74,7 +83,6 @@ public class Proyectil {
         sb.append(", peso=").append(peso);
         sb.append(", diametro=").append(diametro);
         sb.append(", material=").append(material);
-        sb.append(", masa=").append(masa);
         sb.append('}');
         return sb.toString();
     }

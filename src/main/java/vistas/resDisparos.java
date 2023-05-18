@@ -1,20 +1,16 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
- */
+
 package vistas;
 
-/**
- *
- * @author William
- */
-public class resDisparos extends javax.swing.JInternalFrame {
+import java.util.*;
+import javax.swing.table.DefaultTableModel;
+import model.*;
 
-    /**
-     * Creates new form resDisparos
-     */
-    public resDisparos() {
+public class resDisparos extends javax.swing.JInternalFrame {
+private List<ResultadoDisparo> listaRes;
+    
+public resDisparos() {
         initComponents();
+        
     }
 
     /**
@@ -39,11 +35,12 @@ public class resDisparos extends javax.swing.JInternalFrame {
         jRadioButton2 = new javax.swing.JRadioButton();
         jRadioButton1 = new javax.swing.JRadioButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabla1 = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
 
+        setClosable(true);
         setTitle("Busqueda de resultado");
 
         jPanel2.setBackground(new java.awt.Color(225, 206, 122));
@@ -60,14 +57,17 @@ public class resDisparos extends javax.swing.JInternalFrame {
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Id Disparo:");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Autor del disparo:");
 
         jButton1.setText("Buscar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jPanel3.setBackground(new java.awt.Color(66, 75, 84));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Criterio de busqueda", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12), new java.awt.Color(255, 255, 255))); // NOI18N
@@ -106,7 +106,7 @@ public class resDisparos extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabla1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null},
@@ -117,10 +117,9 @@ public class resDisparos extends javax.swing.JInternalFrame {
                 "Id", "Autor", "Alcance Max.", "Altura Max.", "TiempoVuelo", "Vel. Inicial", "Vel. Inicial X", "Vel. Inicial Y", "Estado"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tabla1);
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Recomendaciones:");
 
         jTextArea1.setColumns(20);
@@ -204,6 +203,10 @@ public class resDisparos extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        muestra();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
@@ -219,9 +222,19 @@ public class resDisparos extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JTable tabla1;
     // End of variables declaration//GEN-END:variables
+
+void muestra(){
+    DefaultTableModel dt = (DefaultTableModel) tabla1.getModel();
+        dt.setRowCount(0);
+        for (ResultadoDisparo x : listaRes) {
+            Object v[] = {x.getAlcanceMaximo(), x.getAlturaMaximo(), x.getTiempoDeVuelo(), x.getVelocidadInicial(), x.getVelocidadInicialEnX(),x.getVelocidadInicialEnY(),x.getStatus()};
+            dt.addRow(v);
+        }
+}
+
 }
