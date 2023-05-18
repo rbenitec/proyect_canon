@@ -11,6 +11,10 @@ public class Author {
         this.edad = edad;
         this.mail = mail;
     }
+    
+    public Author(){
+        
+    }
 
     public String getMail() {
         return mail;
@@ -34,6 +38,16 @@ public class Author {
 
     public void setEdad(Integer edad) {
         this.edad = edad;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Author{user=").append(user);
+        sb.append(", edad=").append(edad);
+        sb.append(", mail=").append(mail);
+        sb.append('}');
+        return sb.toString();
     }
     
     

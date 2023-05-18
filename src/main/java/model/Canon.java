@@ -11,6 +11,10 @@ public class Canon {
         this.potencia = potencia;
         this.fechaFabricacion = fechaFabricacion;
     }
+    
+    public Canon (){
+        
+    }
 
     public String getTipo() {
         return tipo;
@@ -38,7 +42,14 @@ public class Canon {
 
     @Override
     public String toString() {
-        return "Canon{" + "tipo=" + tipo + ", potencia=" + potencia + ", fechaFabricacion=" + fechaFabricacion + '}';
+        StringBuilder sb = new StringBuilder();
+        sb.append("Canon{tipo=").append(tipo);
+        sb.append(", potencia=").append(potencia);
+        sb.append(", fechaFabricacion=").append(fechaFabricacion);
+        sb.append('}');
+        return sb.toString();
     }
+
+    
 
 }

@@ -10,10 +10,14 @@ public class Disparo {
     private CondicionesIniciales condicionesIniciales;
     private static Integer cont = 1000;
 
-    public Disparo(Integer idDisparo, Author author, CondicionesIniciales ci) {
+    public Disparo(Author author, CondicionesIniciales ci) {
         this.idDisparo = cont++;
         this.author = author;
         this.condicionesIniciales = ci;
+    }
+    
+    public Disparo (){
+        
     }
 
     public Integer getIdDisparo() {

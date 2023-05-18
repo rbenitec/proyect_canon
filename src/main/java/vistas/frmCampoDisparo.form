@@ -95,8 +95,8 @@
                           </Group>
                           <EmptySpace min="-2" pref="127" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="dAire" min="-2" pref="120" max="-2" attributes="0"/>
-                              <Component id="rAire" min="-2" pref="120" max="-2" attributes="0"/>
+                              <Component id="txtDensidadAire" min="-2" pref="120" max="-2" attributes="0"/>
+                              <Component id="txtResistenciaAire" min="-2" pref="120" max="-2" attributes="0"/>
                               <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -143,11 +143,11 @@
                           <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="rAire" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtResistenciaAire" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                           <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="dAire" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtDensidadAire" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -527,7 +527,10 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="dAire">
+        <Component class="javax.swing.JTextField" name="txtDensidadAire">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="0.99"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
           <Properties>
@@ -537,9 +540,12 @@
             <Property name="text" type="java.lang.String" value="Densidad del aire"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="rAire">
+        <Component class="javax.swing.JTextField" name="txtResistenciaAire">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="1.01"/>
+          </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rAireActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtResistenciaAireActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">

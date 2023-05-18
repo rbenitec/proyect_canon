@@ -16,6 +16,7 @@ public class Calculos {
     
     // Calcular la velocidad inicial del proyectil (se usara en todo le proyecto)
     public double hallarVelocidadInicial(double masaProy, double resAire, double densAire, double p, double diametro) {
+        System.out.println("Se llamo al metodo hallarVelocidadInicial!");
         return Math.sqrt((2 * p) / (masaProy * resAire * densAire * seccTransProy(diametro)));
     }
 

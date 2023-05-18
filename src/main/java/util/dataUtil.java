@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import model.Author;
 import model.Canon;
 import model.Proyectil;
 
@@ -42,6 +43,11 @@ public class dataUtil {
         map.put("hierro", 13.81);
         map.put("plomo", 15.81);
         CONSTANTES_CALCULO = map;
+    }
+    
+    public static Author obtenerAuthorEjemplo(){
+        Author a = new Author("Fabricio", 22, "fgutierrez@gmail.com");
+        return a;
     }
 
     public static Double getDensidadPorTipo(String value) {

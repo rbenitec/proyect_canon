@@ -18,7 +18,10 @@ import java.util.List;
 import javax.swing.JPanel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import model.Ambiente;
+import model.Author;
 import model.Canon;
+import model.CondicionesIniciales;
 import model.Disparo;
 import model.Proyectil;
 import model.ResultadoDisparo;
@@ -69,6 +72,8 @@ public class frmCampoDisparo extends javax.swing.JFrame {
 //        spnGrados.setValue(giro);
 //        txtAngulo.setText(giro+"");
         txtGravedad.setText(dataUtil.GRAVEDAD+"");
+        txtDensidadAire.setText("1.01");
+        txtResistenciaAire.setText("0.99");
     }
     
     private void simularDisparo() {
@@ -148,6 +153,12 @@ public class frmCampoDisparo extends javax.swing.JFrame {
             g2.drawOval(p.getX(), p.getY(), 1, 1);
         }
     }
+    
+    void llenarFormularioConResuelto(ResultadoDisparo resultadoDisparo){
+       // Setear los valores del objeto resultadoDisaparo en los label del formulario. 
+       
+        System.out.println("resultadoDisparo: "+resultadoDisparo.toString());
+    }
 
     
     
@@ -181,9 +192,9 @@ public class frmCampoDisparo extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         spnGrados = new javax.swing.JSpinner();
-        dAire = new javax.swing.JTextField();
+        txtDensidadAire = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        rAire = new javax.swing.JTextField();
+        txtResistenciaAire = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -378,12 +389,15 @@ public class frmCampoDisparo extends javax.swing.JFrame {
 
         spnGrados.setModel(new javax.swing.SpinnerNumberModel(0, 0, 90, 1));
 
+        txtDensidadAire.setText("0.99");
+
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel6.setText("Densidad del aire");
 
-        rAire.addActionListener(new java.awt.event.ActionListener() {
+        txtResistenciaAire.setText("1.01");
+        txtResistenciaAire.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rAireActionPerformed(evt);
+                txtResistenciaAireActionPerformed(evt);
             }
         });
 
@@ -428,8 +442,8 @@ public class frmCampoDisparo extends javax.swing.JFrame {
                                 .addComponent(spnGrados, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(127, 127, 127)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(dAire, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(rAire, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtDensidadAire, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtResistenciaAire, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6))))
                 .addGap(33, 33, 33))
         );
@@ -465,11 +479,11 @@ public class frmCampoDisparo extends javax.swing.JFrame {
                             .addComponent(btnReiniciar))
                         .addGap(25, 25, 25))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(rAire, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtResistenciaAire, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(14, 14, 14)
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(dAire, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtDensidadAire, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
         );
 
@@ -491,8 +505,65 @@ public class frmCampoDisparo extends javax.swing.JFrame {
 
     private void btnSimularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimularActionPerformed
         List<Point> points = new ArrayList<>();
+        SimulacionDisparo simulacionDisparo = new SimulacionDisparo();
         ResultadoDisparo resultadoDisparo =  null;
-       String text = "";     
+        
+        Author author = null;
+        
+        Canon canon =null;
+        
+        Proyectil proyectil =null;
+        
+        /**
+         * Building el objeto Disparo
+         */
+        
+        //Define ambiente
+        Ambiente ambiente =new Ambiente(0.99, 1.01);
+//        ambiente.setDensidadAire(0.99);
+//        ambiente.setResistenciaAire(1.01);
+        
+        //Define proyectil
+        for(Proyectil p : obj.getProyectil()){
+            if(p.getTipo().equalsIgnoreCase(cbxTipoProyectil.getSelectedItem().toString())){
+                proyectil = p;
+                proyectil.calcularVolumen();
+                proyectil.calcularMasa();
+            }
+        }
+      
+        
+        //Define Cañon
+        for(Canon c : obj.getCanones()){
+            if(c.getTipo().equalsIgnoreCase(cbxTipoCanon.getSelectedItem().toString())){
+                canon = c;
+            }
+        }
+        
+        //Define Condiciones iniciales
+        CondicionesIniciales condicionesIniciales = new CondicionesIniciales(canon, ambiente, proyectil, giro); 
+//        condicionesIniciales.setAmbiente(ambiente);
+//        condicionesIniciales.setAngulo(giro);
+//        condicionesIniciales.setCanon(canon);
+//        condicionesIniciales.setProyectil(proyectil);
+
+        System.out.println("condicionesIniciales: "+ condicionesIniciales);
+        
+        //Define author : actualmente recupera un dato estatico en DataUtil
+        
+        author = dataUtil.obtenerAuthorEjemplo(); // esto debe ser reemplazado con el author del login
+        
+        Disparo disparo= new Disparo(author, condicionesIniciales);
+        //Define Disparo
+//        disparo.setCi(condicionesIniciales);
+//        disparo.setAuthor(author);
+        
+        //Ejecutar disparo
+        resultadoDisparo = simulacionDisparo.ejecutarDisparo(disparo);
+        
+        llenarFormularioConResuelto(resultadoDisparo);
+        
+        
         DibujarTrayectoria obj = new DibujarTrayectoria();
         points = obj.obtenerPuntos(giro, velocidadInicial);
         
@@ -557,9 +628,9 @@ public class frmCampoDisparo extends javax.swing.JFrame {
 //        }
     }//GEN-LAST:event_cbxTipoProyectilActionPerformed
 
-    private void rAireActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rAireActionPerformed
+    private void txtResistenciaAireActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtResistenciaAireActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_rAireActionPerformed
+    }//GEN-LAST:event_txtResistenciaAireActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -600,7 +671,6 @@ public class frmCampoDisparo extends javax.swing.JFrame {
     private javax.swing.JPanel campoDisparo;
     private javax.swing.JComboBox<String> cbxTipoCanon;
     private javax.swing.JComboBox<String> cbxTipoProyectil;
-    private javax.swing.JTextField dAire;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel18;
@@ -618,13 +688,14 @@ public class frmCampoDisparo extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator9;
-    private javax.swing.JTextField rAire;
     private javax.swing.JSpinner spnGrados;
     private javax.swing.JLabel txtAngulo;
+    private javax.swing.JTextField txtDensidadAire;
     private javax.swing.JLabel txtDiametro;
     private javax.swing.JLabel txtGravedad;
     private javax.swing.JLabel txtMasa;
     private javax.swing.JLabel txtPotencia;
+    private javax.swing.JTextField txtResistenciaAire;
     // End of variables declaration//GEN-END:variables
     public class Dibujos extends JPanel{
 

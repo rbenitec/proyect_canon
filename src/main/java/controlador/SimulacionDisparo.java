@@ -15,23 +15,30 @@ public class SimulacionDisparo {
     //Recuperar Data del Frame
     //Mostrar desplazamineto del proyectil
     private Calculos calculos;
-    private ReporteCondicionesIniciales condicionesIniciales;
+//    private ReporteCondicionesIniciales condicionesIniciales;
     private ReporteResultadoDisparo reportResultadoDisparo;
-    private double velocidadInicial;
+//    private double velocidadInicial;
     private double angulo;
     
+    ReporteCondicionesIniciales reporteCondicionesIniciales = new ReporteCondicionesIniciales();
+    
     public ResultadoDisparo ejecutarDisparo(Disparo disparo){
+        System.out.println("Se llamo al metodo Ejecutar Disparo: "+ disparo);
+        double velocidadInicial = 0;
+        double masaProyectil = 0;
         ResultadoDisparo resultadoDisparo = new ResultadoDisparo();
         try{
             //Metodo para recuperar condiciones iniciales y guardarlos en una lista.
-            condicionesIniciales.guardarCondicionesIniciales(disparo.getCondicionesIniciales());
+            reporteCondicionesIniciales.guardarCondicionesIniciales(disparo.getCondicionesIniciales());
         
             //Metodo para ejecutar calculos.
             angulo = disparo.getCondicionesIniciales().getAngulo();
-            velocidadInicial = calculos.hallarVelocidadInicial(angulo,  
+            System.out.println("angulo: "+ angulo);
+//            masaProyectil = disparo.getCondicionesIniciales().getProyectil().o
+            velocidadInicial = calculos.hallarVelocidadInicial(disparo.getCondicionesIniciales().getProyectil().getMasa(),  
                                                            disparo.getCondicionesIniciales().getAmbiente().getResistenciaAire(), 
-                                                           disparo.getCondicionesIniciales().getAmbiente().getDensidadAire(), 
-                                                           disparo.getCondicionesIniciales().getAngulo(),
+                                                           disparo.getCondicionesIniciales().getAmbiente().getDensidadAire(),
+                                                           disparo.getCondicionesIniciales().getCanon().getPotencia(),
                                                            disparo.getCondicionesIniciales().getProyectil().getDiametro());
             calculos.setAngulo(angulo);
             calculos.setV0(velocidadInicial);

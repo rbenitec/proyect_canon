@@ -9,6 +9,10 @@ public class Ambiente {
         this.resistenciaAire = resistenciaAire;
         this.densidadAire = densidadAire;
     }
+    
+    public Ambiente(){
+        
+    }
 
     public double getResistenciaAire() {
         return resistenciaAire;

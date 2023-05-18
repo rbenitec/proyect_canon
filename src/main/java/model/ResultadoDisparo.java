@@ -92,5 +92,22 @@ public class ResultadoDisparo {
         this.velocidadInicialEnY = velocidadInicialEnY;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("ResultadoDisparo{autor=").append(autor);
+        sb.append(", alcanceMaximo=").append(alcanceMaximo);
+        sb.append(", alturaMaximo=").append(alturaMaximo);
+        sb.append(", tiempoDeVuelo=").append(tiempoDeVuelo);
+        sb.append(", velocidadInicial=").append(velocidadInicial);
+        sb.append(", velocidadInicialEnX=").append(velocidadInicialEnX);
+        sb.append(", velocidadInicialEnY=").append(velocidadInicialEnY);
+        sb.append(", status=").append(status);
+        sb.append('}');
+        return sb.toString();
+    }
+    
+    
+
    
 }

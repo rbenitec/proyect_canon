@@ -13,6 +13,10 @@ public class CondicionesIniciales {
         this.proyectil = proyectil;
         this.angulo = angulo;
     }
+    
+    public CondicionesIniciales(){
+        
+    }
 
     public Canon getCanon() {
         return canon;
@@ -45,6 +49,18 @@ public class CondicionesIniciales {
     public void setAngulo(double angulo) {
         this.angulo = angulo;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("CondicionesIniciales{canon=").append(canon);
+        sb.append(", ambiente=").append(ambiente);
+        sb.append(", proyectil=").append(proyectil);
+        sb.append(", angulo=").append(angulo);
+        sb.append('}');
+        return sb.toString();
+    }
+    
     
     
 }
