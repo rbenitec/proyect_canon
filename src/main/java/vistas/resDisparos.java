@@ -4,9 +4,14 @@ package vistas;
 import java.util.*;
 import javax.swing.table.DefaultTableModel;
 import model.*;
+import service.ReporteCondicionesIniciales;
+import service.ReporteResultadoDisparo;
 
 public class resDisparos extends javax.swing.JInternalFrame {
 private List<ResultadoDisparo> listaRes;
+
+    ReporteResultadoDisparo  reporteResultadoDisparo =  new ReporteResultadoDisparo();
+
     
 public resDisparos() {
         initComponents();
@@ -230,8 +235,10 @@ public resDisparos() {
 
 void muestra(){
     DefaultTableModel dt = (DefaultTableModel) tabla1.getModel();
-        dt.setRowCount(0);
-        for (ResultadoDisparo x : listaRes) {
+    dt.setRowCount(0);
+    System.out.println("Imprimir Resultado disparos!");
+    reporteResultadoDisparo.getListResultadosDisparo().forEach(r -> System.out.println(r));
+        for (ResultadoDisparo x : reporteResultadoDisparo.getListResultadosDisparo()) {
             Object v[] = {x.getAlcanceMaximo(), x.getAlturaMaximo(), x.getTiempoDeVuelo(), x.getVelocidadInicial(), x.getVelocidadInicialEnX(),x.getVelocidadInicialEnY(),x.getStatus()};
             dt.addRow(v);
         }

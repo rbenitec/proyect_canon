@@ -9,9 +9,9 @@ public class SimulacionDisparo {
 
     //Recuperar Data del Frame
     //Mostrar desplazamineto del proyectil
-    private Calculos calculos;
+//    private Calculos calculos;
 //    private ReporteCondicionesIniciales condicionesIniciales;
-    private ReporteResultadoDisparo reportResultadoDisparo;
+//    private ReporteResultadoDisparo reportResultadoDisparo;
 //    private double velocidadInicial;
     private double angulo;
 
@@ -19,6 +19,10 @@ public class SimulacionDisparo {
 
     public ResultadoDisparo ejecutarDisparo(Disparo disparo) {
         System.out.println("Se llamo al metodo Ejecutar Disparo: " + disparo);
+        Calculos calculos =  new Calculos();
+        ReporteResultadoDisparo reportResultadoDisparo =  new ReporteResultadoDisparo();
+        
+        
         double velocidadInicial=0;
         double masaProyectil = 0;
         ResultadoDisparo resultadoDisparo = new ResultadoDisparo();

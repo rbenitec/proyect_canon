@@ -4,11 +4,14 @@ import controlador.SimulacionDisparo;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import model.*;
+import service.ReporteCondicionesIniciales;
+import util.dataUtil;
 
 public class condIniciales extends javax.swing.JInternalFrame {
 
     private List<CondicionesIniciales> listaCond;
     SimulacionDisparo s = new SimulacionDisparo();
+    ReporteCondicionesIniciales reporteCondicionesIniciales =  new ReporteCondicionesIniciales();
 
     public condIniciales() {
         initComponents();
@@ -229,7 +232,10 @@ public class condIniciales extends javax.swing.JInternalFrame {
     void muestra() {
         DefaultTableModel dt = (DefaultTableModel) tabla1.getModel();
         dt.setRowCount(0);
-        for (CondicionesIniciales x : listaCond) {
+        System.out.println("Imprimir gravedad Gravedad: "+ dataUtil.GRAVEDAD);
+        System.out.println("Imprimir condiciones iniciales!");
+        reporteCondicionesIniciales.getListCondIni().forEach(r -> System.out.println(r));
+        for (CondicionesIniciales x : reporteCondicionesIniciales.getListCondIni()) {
             Object v[] = {x.getCanon().getPotencia(), x.getProyectil().getMasa(), x.getAmbiente().getResistenciaAire(), x.getAmbiente().getDensidadAire(), x.getAngulo()};
             dt.addRow(v);
         }

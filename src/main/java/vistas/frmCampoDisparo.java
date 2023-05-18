@@ -79,58 +79,7 @@ public class frmCampoDisparo extends javax.swing.JFrame {
         txtResistenciaAire.setText("0.99");
     }
 
-    private void simularDisparo() {
-
-//        c.hallarVelocidadInicial(giro, giro, giro, giro)
-        // Obtener los valores de los campos de texto
-        velocidadInicial = 10;
-        anguloDisparo = giro;
-        double sinTheta = Math.sin(Math.toRadians(giro));
-        double cosTheta = Math.cos(Math.toRadians(giro));
-
-        // Calcular la distancia y altura máximas
-        tiempoTotal = (2 * velocidadInicial * Math.sin(Math.toRadians(giro))) / dataUtil.GRAVEDAD;
-        distanciaMaxima = (velocidadInicial * velocidadInicial * Math.sin(Math.toRadians(2 * giro))) / dataUtil.GRAVEDAD;
-        alturaMaxima = (velocidadInicial * velocidadInicial * Math.sin(Math.toRadians(giro)) * Math.sin(Math.toRadians(giro))) / (2 * dataUtil.GRAVEDAD);
-
-        // Calcular la trayectoria del proyectil
-        double deltaT = tiempoTotal / 1000;
-
-        double x, y;
-        double cnt = 0;
-//        while (cnt < tiempoTotal) {
-// 
-//            double x = velocidadInicial * cosTheta * cnt;
-//            double y = velocidadInicial * sinTheta * cnt - .5 * dataUtil.GRAVEDAD * cnt * cnt;
-//            points.add(new Point(15 + (int) x, 415 - (int) y));
-// 
-//            cnt += deltaT;
-//        }
-
-        for (double t = 0; t <= tiempoTotal; t += 0.1) {
-            x = (velocidadInicial * Math.cos(Math.toRadians(anguloDisparo))) * t;
-            y = (velocidadInicial * Math.sin(Math.toRadians(anguloDisparo))) * t - (0.5 * dataUtil.GRAVEDAD * t * t);
-
-            // Dibujar el proyectil en el panel de dibujo
-            Graphics g = campoDisparo.getGraphics();
-            g.setColor(Color.RED);
-            g.fillOval((int) x, (int) (campoDisparo.getHeight() - y), 5, 5);
-
-            // Detener la simulación si el proyectil ha tocado el suelo
-            if (y <= 0) {
-                break;
-            }
-
-            // Esperar un tiempo para animar la simulación
-            try {
-                Thread.sleep(50);
-            } catch (InterruptedException ex) {
-                ex.printStackTrace();
-            }
-        }
-
-    }
-
+  
     private void vacio() {
         txtAngulo.setText("0.0");
         txtDiametro.setText("0.0");
@@ -628,23 +577,17 @@ public class frmCampoDisparo extends javax.swing.JFrame {
 
         llenarFormularioConResuelto(resultadoDisparo);
 
+        
+        // Dibujar Trayectoria
         DibujarTrayectoria obj = new DibujarTrayectoria();
         points = obj.obtenerPuntos(giro, velocidadInicial);
 
-        points.forEach(p -> System.out.println(p.toString()));
+//        points.forEach(p -> System.out.println(p.toString()));
 
         DibujarTrayectoria.dibujarTrayectoria(campoDisparo.getGraphics(), points);
 
         condIniciales iniciales = new condIniciales();
 
-//        Disparo disparo = new Disparo(WIDTH, author, ci);
-        //FiguraBase.dibujarLinea(campoDisparo.getGraphics(), 100, 100, 200, 200);
-//        limpiarCampos();
-//        simularDisparo();
-//        mostrarImagen();
-//        points.removeIf(p -> p.getX()>=0);
-//        lblDistanciaMaxima.setText(String.format("%.2f m", distanciaMaxima));
-//        lblAlturaMaxima.setText(String.format("%.2f m", alturaMaxima));
     }//GEN-LAST:event_btnSimularActionPerformed
 
     private void cbxTipoCanonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxTipoCanonActionPerformed
