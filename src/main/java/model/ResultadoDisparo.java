@@ -5,6 +5,7 @@ package model;
 
 public class ResultadoDisparo {
     
+    private int id;
     private String autor;
     private double alcanceMaximo;
     private double alturaMaximo;
@@ -18,6 +19,7 @@ public class ResultadoDisparo {
     }
 
     public ResultadoDisparo(String autor, double alcanceMaximo, double alturaMaximo, double tiempoDeVuelo, double velocidadInicial, double velocidadInicialEnX, double velocidadInicialEnY, int status){
+        this.id = id++;
         this.autor = autor;
         this.alcanceMaximo = alcanceMaximo;
         this.alturaMaximo = alturaMaximo;
@@ -28,6 +30,9 @@ public class ResultadoDisparo {
         this.status = status;
     }
 
+    
+    
+    
     public String getNombreAutor() {
         return autor;
     }
@@ -91,6 +96,8 @@ public class ResultadoDisparo {
     public void setVelocidadInicialEnY(double velocidadInicialEnY) {
         this.velocidadInicialEnY = velocidadInicialEnY;
     }
+    
+    
 
     @Override
     public String toString() {
@@ -105,6 +112,14 @@ public class ResultadoDisparo {
         sb.append(", status=").append(status);
         sb.append('}');
         return sb.toString();
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id++;
     }
     
     

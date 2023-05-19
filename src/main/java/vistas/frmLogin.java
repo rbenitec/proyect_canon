@@ -8,8 +8,11 @@ package vistas;
 import javax.swing.JOptionPane;
 import util.*;
 import model.*;
+
 public class frmLogin extends javax.swing.JFrame {
+
     dataUtil obj = new dataUtil();
+
     /**
      * Creates new form frmSistema
      */
@@ -169,18 +172,24 @@ public class frmLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_txtUsuarioFocusGained
 
     private void btnIngresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresaActionPerformed
-        String Pass=new String(txtContra.getPassword());
+        String Pass = new String(txtContra.getPassword());
+        Boolean valida = false;
 
-        for(Author u : obj.getAuthor()){
-                if(txtUsuario.getText().equals(u.getUser())&& Pass.equals(u.getPswrd())){
-            frmApp In=new frmApp();
-            In.setVisible(true);
-            dispose();
-        } else{
-            JOptionPane.showMessageDialog(this,"Usuario o contraseña incorrecta");
+        for (Author u : obj.getAuthor()) {
+            if (txtUsuario.getText().equals(u.getUser()) && Pass.equals(u.getPswrd())) {
+                valida= true;
+                dataUtil.setAuthorLogeado(u);
+            } 
         }
-            }
         
+        if (valida) {
+                frmApp In = new frmApp();
+                In.setVisible(true);
+                setVisible(false);
+            } else {
+                JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrecta");
+            }
+
     }//GEN-LAST:event_btnIngresaActionPerformed
 
     /**

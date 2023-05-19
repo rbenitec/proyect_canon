@@ -114,9 +114,9 @@ public class frmCampoDisparo extends javax.swing.JFrame {
         String altura = Double.toString(resultadoDisparo.getAlturaMaximo());
         String tiempo = Double.toString(resultadoDisparo.getTiempoDeVuelo());
 
-        txtTiempo.setText(tiempo);
-        txtAltura.setText(altura);
-        txtAlcance.setText(alcance);
+        txtTiempo.setText(tiempo+" s");
+        txtAltura.setText(altura+" m");
+        txtAlcance.setText(alcance+" m");
         System.out.println("resultadoDisparo: " + resultadoDisparo.toString());
     }
 
@@ -126,10 +126,6 @@ public class frmCampoDisparo extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         campoDisparo = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
-        txtAltura = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        txtTiempo = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel4 = new javax.swing.JLabel();
@@ -160,47 +156,26 @@ public class frmCampoDisparo extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         txtAlcance = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        txtAltura = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        txtTiempo = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAutoRequestFocus(false);
         setBackground(new java.awt.Color(225, 206, 122));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jPanel1.setBackground(new java.awt.Color(225, 206, 122));
 
-        jLabel8.setText("Altura máxima:");
-
-        txtAltura.setText("0.0");
-
-        jLabel9.setText("Tiempo de vuelo:");
-
-        txtTiempo.setText("0");
-
         javax.swing.GroupLayout campoDisparoLayout = new javax.swing.GroupLayout(campoDisparo);
         campoDisparo.setLayout(campoDisparoLayout);
         campoDisparoLayout.setHorizontalGroup(
             campoDisparoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(campoDisparoLayout.createSequentialGroup()
-                .addGap(240, 240, 240)
-                .addComponent(jLabel8)
-                .addGap(18, 18, 18)
-                .addComponent(txtAltura, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(54, 54, 54)
-                .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtTiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(202, Short.MAX_VALUE))
+            .addGap(0, 752, Short.MAX_VALUE)
         );
         campoDisparoLayout.setVerticalGroup(
             campoDisparoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(campoDisparoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(campoDisparoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(txtAltura)
-                    .addComponent(jLabel9)
-                    .addComponent(txtTiempo))
-                .addContainerGap(306, Short.MAX_VALUE))
+            .addGap(0, 335, Short.MAX_VALUE)
         );
 
         jPanel2.setBackground(new java.awt.Color(66, 75, 84));
@@ -401,6 +376,14 @@ public class frmCampoDisparo extends javax.swing.JFrame {
 
         txtAlcance.setText("0.0");
 
+        jLabel8.setText("Altura máxima:");
+
+        txtAltura.setText("0.0");
+
+        jLabel9.setText("Tiempo de vuelo:");
+
+        txtTiempo.setText("0");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -417,14 +400,11 @@ public class frmCampoDisparo extends javax.swing.JFrame {
                             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(cbxTipoCanon, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(22, 22, 22)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(cbxTipoCanon, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addContainerGap()
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(spnGrados, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -434,11 +414,11 @@ public class frmCampoDisparo extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(cbxTipoProyectil, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(28, 28, 28)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel7)
                                         .addGap(18, 18, 18)
-                                        .addComponent(txtAlcance, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(txtAlcance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(btnSimular, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -447,13 +427,28 @@ public class frmCampoDisparo extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtDensidadAire, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtResistenciaAire, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6))))
+                            .addComponent(jLabel6)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(189, 189, 189)
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtAltura, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(93, 93, 93)
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtTiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(33, 33, 33))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 38, Short.MAX_VALUE)
+                .addGap(0, 15, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(txtAltura)
+                    .addComponent(jLabel9)
+                    .addComponent(txtTiempo))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -470,7 +465,7 @@ public class frmCampoDisparo extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(spnGrados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(6, 6, 6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
                             .addComponent(jLabel2))
@@ -519,7 +514,7 @@ public class frmCampoDisparo extends javax.swing.JFrame {
         ResultadoDisparo resultadoDisparo = null;
         Ambiente ambiente=null;
         CondicionesIniciales condicionesIniciales=null;
-        Author author = null;
+        Author author = new Author();
         Disparo disparo=null;
 
         Canon canon = null;
@@ -565,7 +560,7 @@ public class frmCampoDisparo extends javax.swing.JFrame {
         System.out.println("condicionesIniciales: " + condicionesIniciales);
 
         //Define author : actualmente recupera un dato estatico en DataUtil
-        author = dataUtil.obtenerAuthorEjemplo(); // esto debe ser reemplazado con el author del login
+        author.setUser(dataUtil.nombreAutor); // esto debe ser reemplazado con el author del login
 
         disparo = new Disparo(author, condicionesIniciales);
         //Define Disparo

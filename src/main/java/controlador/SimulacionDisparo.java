@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import model.*;
 import service.*;
+import util.dataUtil;
 
 public class SimulacionDisparo {
 
@@ -20,6 +21,7 @@ public class SimulacionDisparo {
     public ResultadoDisparo ejecutarDisparo(Disparo disparo) {
         System.out.println("Se llamo al metodo Ejecutar Disparo: " + disparo);
         Calculos calculos =  new Calculos();
+        dataUtil data=new dataUtil();
         ReporteResultadoDisparo reportResultadoDisparo =  new ReporteResultadoDisparo();
         
         
@@ -41,6 +43,7 @@ public class SimulacionDisparo {
                     System.out.println("CondicionesIniciales no es nulo");
                     if (disparo.getCondicionesIniciales().getProyectil() != null) {
                         System.out.println("proyectil no es nulo");
+                        
                         velocidadInicial = calculos.hallarVelocidadInicial(
                                 disparo.getCondicionesIniciales().getProyectil().getMasa(),
                                 disparo.getCondicionesIniciales().getAmbiente().getResistenciaAire(),
@@ -63,12 +66,13 @@ public class SimulacionDisparo {
             resultadoDisparo.setAlcanceMaximo(calculos.alcMax());
             resultadoDisparo.setAlturaMaximo(calculos.h_max());
             resultadoDisparo.setTiempoDeVuelo(calculos.timeS());
+            resultadoDisparo.setVelocidadInicial(velocidadInicial);
             resultadoDisparo.setVelocidadInicialEnY(calculos.Vy());
             resultadoDisparo.setVelocidadInicialEnX(calculos.Vx());
             resultadoDisparo.setStatus(1);
 
             //Metodo para registrar resultados de calculos
-            reportResultadoDisparo.guardarResultadosDisparo(resultadoDisparo);
+            data.guardarResultadosDisparo(resultadoDisparo);
 
             return resultadoDisparo;
         } catch (Exception e) {
