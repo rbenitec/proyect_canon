@@ -34,9 +34,9 @@ public class dataUtil {
         proyectil.add(new Proyectil("Terrestre", 11, 0.125, "Plomo"));
 
         //Data de canoñes       tipo        potencia    fecha
-        canones.add(new Canon("Balistico", 3000, "10/10/1850"));
-        canones.add(new Canon("Maritimo", 5000, "10/10/1855"));
-        canones.add(new Canon("Campo", 2000, "10/10/1860"));
+        canones.add(new Canon("Balistico", 150, "10/10/1850"));
+        canones.add(new Canon("Maritimo", 200, "10/10/1855"));
+        canones.add(new Canon("Campo", 250, "10/10/1860"));
 
         //Data del author
         author.add(new Author("Fabricio", "admin", "fgutierrez@gmail.com"));
@@ -60,10 +60,8 @@ public class dataUtil {
         return a;
     }
     
-    public static void setAuthorLogeado(Author autor){
-        Author a = new Author();
-        a= autor;
-        nombreAutor=a.getUser();
+    public static void setAuthorLogeado(String user){
+        nombreAutor=user;
     }
     
 //     public static String getAuthorLogeado(Author autor){

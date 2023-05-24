@@ -8,14 +8,30 @@ import service.ReporteCondicionesIniciales;
 import util.dataUtil;
 
 public class condIniciales extends javax.swing.JInternalFrame {
+    static int cont=1000;
 
     private List<CondicionesIniciales> listaCond;
     SimulacionDisparo s = new SimulacionDisparo();
-    ReporteCondicionesIniciales reporteCondicionesIniciales =  new ReporteCondicionesIniciales();
+//    ReporteCondicionesIniciales reporteCondicionesIniciales =  new ReporteCondicionesIniciales();
+    dataUtil reporteCondicionesIniciales = new dataUtil();
+    Disparo d =  new Disparo();
 
     public condIniciales() {
         initComponents();
         
+    }
+    
+    void muestra() {
+        DefaultTableModel dt = (DefaultTableModel) tabla1.getModel();
+        dt.setRowCount(0);
+        System.out.println("Imprimir Resultado disparos!");
+        reporteCondicionesIniciales.getListCondIni().forEach(r -> System.out.println(r));
+     
+        for (CondicionesIniciales x : reporteCondicionesIniciales.getListCondIni()) {
+            Object v[] = {cont++, dataUtil.nombreAutor, x.getCanon().getPotencia(), x.getProyectil().getMasa(),x.getAmbiente().getResistenciaAire(),x.getAmbiente().getDensidadAire(), x.getAngulo()};
+            dt.addRow(v);
+        }
+        cont =0;
     }
 
 
@@ -229,16 +245,16 @@ public class condIniciales extends javax.swing.JInternalFrame {
     private javax.swing.JTable tabla1;
     // End of variables declaration//GEN-END:variables
 
-    void muestra() {
-        DefaultTableModel dt = (DefaultTableModel) tabla1.getModel();
-        dt.setRowCount(0);
-        System.out.println("Imprimir gravedad Gravedad: "+ dataUtil.GRAVEDAD);
-        System.out.println("Imprimir condiciones iniciales!");
-        reporteCondicionesIniciales.getListCondIni().forEach(r -> System.out.println(r));
-        for (CondicionesIniciales x : reporteCondicionesIniciales.getListCondIni()) {
-            Object v[] = {x.getCanon().getPotencia(), x.getProyectil().getMasa(), x.getAmbiente().getResistenciaAire(), x.getAmbiente().getDensidadAire(), x.getAngulo()};
-            dt.addRow(v);
-        }
-    }
+//    void muestra() {
+//        DefaultTableModel dt = (DefaultTableModel) tabla1.getModel();
+//        dt.setRowCount(0);
+//        System.out.println("Imprimir gravedad Gravedad: "+ dataUtil.GRAVEDAD);
+//        System.out.println("Imprimir condiciones iniciales!");
+//        reporteCondicionesIniciales.getListCondIni().forEach(r -> System.out.println(r));
+//        for (CondicionesIniciales x : reporteCondicionesIniciales.getListCondIni()) {
+//            Object v[] = {x.getCanon().getPotencia(), x.getProyectil().getMasa(), x.getAmbiente().getResistenciaAire(), x.getAmbiente().getDensidadAire(), x.getAngulo()};
+//            dt.addRow(v);
+//        }
+//    }
 
 }

@@ -178,7 +178,7 @@ public class frmLogin extends javax.swing.JFrame {
         for (Author u : obj.getAuthor()) {
             if (txtUsuario.getText().equals(u.getUser()) && Pass.equals(u.getPswrd())) {
                 valida= true;
-                dataUtil.setAuthorLogeado(u);
+                dataUtil.setAuthorLogeado(txtUsuario.getText());
             } 
         }
         

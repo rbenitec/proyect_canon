@@ -31,6 +31,8 @@ public class SimulacionDisparo {
         try {
             //Metodo para recuperar condiciones iniciales y guardarlos en una lista.
             reporteCondicionesIniciales.guardarCondicionesIniciales(disparo.getCondicionesIniciales());
+            
+            data.guardarCondicionesIniciales(disparo.getCondicionesIniciales());
 
             //Metodo para ejecutar calculos.
             angulo = disparo.getCondicionesIniciales().getAngulo();
@@ -61,6 +63,7 @@ public class SimulacionDisparo {
             } else {
                 System.out.println("disparo es nulo");
             }
+            System.out.println("dataUtil.nombreAutor: "+ dataUtil.nombreAutor);
             calculos.setAngulo(angulo);
             calculos.setV0(velocidadInicial);
             resultadoDisparo.setAlcanceMaximo(calculos.alcMax());
@@ -69,10 +72,14 @@ public class SimulacionDisparo {
             resultadoDisparo.setVelocidadInicial(velocidadInicial);
             resultadoDisparo.setVelocidadInicialEnY(calculos.Vy());
             resultadoDisparo.setVelocidadInicialEnX(calculos.Vx());
+            resultadoDisparo.setNombreAutor(dataUtil.nombreAutor);
+            resultadoDisparo.setId(disparo.getIdDisparo());
             resultadoDisparo.setStatus(1);
 
             //Metodo para registrar resultados de calculos
             data.guardarResultadosDisparo(resultadoDisparo);
+            
+            
 
             return resultadoDisparo;
         } catch (Exception e) {

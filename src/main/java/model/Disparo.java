@@ -43,6 +43,8 @@ public class Disparo {
     public void setCi(CondicionesIniciales ci) {
         this.condicionesIniciales = ci;
     }
+    
+    
 
     @Override
     public String toString() {
