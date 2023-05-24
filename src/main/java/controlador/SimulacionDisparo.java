@@ -30,7 +30,7 @@ public class SimulacionDisparo {
         ResultadoDisparo resultadoDisparo = new ResultadoDisparo();
         try {
             //Metodo para recuperar condiciones iniciales y guardarlos en una lista.
-            reporteCondicionesIniciales.guardarCondicionesIniciales(disparo.getCondicionesIniciales());
+            //reporteCondicionesIniciales.guardarCondicionesIniciales(disparo.getCondicionesIniciales());
             
             data.guardarCondicionesIniciales(disparo.getCondicionesIniciales());
 
@@ -88,9 +88,17 @@ public class SimulacionDisparo {
         }
         return resultadoDisparo;
     }
+    
+    //Registrar Reporte[Lista] Condiciones Iniciales
+    
+    public void resgitrarCondicionesIniciales(CondicionesIniciales ci){
+        
+    }
+    
+    
     //Crear los Objetos con la data [Author, Canon, Proyectil, Condiciones Iniciales]
     //Generar sus Objetos
-    //Registrar Reporte[Lista] Condiciones Iniciales
+    
     // -- Crear metodo retornar Reporte de condiciones inciales
     //Registrar Reporte[Lista] REsultado Disparo
     // -- Crear metodo para retornar listado de Resultados de Disparo

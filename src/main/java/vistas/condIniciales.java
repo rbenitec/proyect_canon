@@ -9,6 +9,7 @@ import util.dataUtil;
 
 public class condIniciales extends javax.swing.JInternalFrame {
     static int cont=1000;
+//    int conFilter = 0;
 
     private List<CondicionesIniciales> listaCond;
     SimulacionDisparo s = new SimulacionDisparo();
@@ -19,6 +20,8 @@ public class condIniciales extends javax.swing.JInternalFrame {
     public condIniciales() {
         initComponents();
         
+        busquedaPorNombre("");
+        
     }
     
     void muestra() {
@@ -28,10 +31,36 @@ public class condIniciales extends javax.swing.JInternalFrame {
         reporteCondicionesIniciales.getListCondIni().forEach(r -> System.out.println(r));
      
         for (CondicionesIniciales x : reporteCondicionesIniciales.getListCondIni()) {
-            Object v[] = {cont++, dataUtil.nombreAutor, x.getCanon().getPotencia(), x.getProyectil().getMasa(),x.getAmbiente().getResistenciaAire(),x.getAmbiente().getDensidadAire(), x.getAngulo()};
+            Object v[] = {x.getId(), x.getNombreAutor(), x.getCanon().getPotencia(), x.getProyectil().getMasa(),x.getAmbiente().getResistenciaAire(),x.getAmbiente().getDensidadAire(), x.getAngulo()};
             dt.addRow(v);
         }
-        cont =0;
+//        cont =0;
+    }
+    
+    void busquedaPorNombreConFiltro(String cad){
+        DefaultTableModel dt = (DefaultTableModel) tabla1.getModel();
+        dt.setRowCount(0);
+        reporteCondicionesIniciales.getListCondIni().stream().filter(ci -> ci.getNombreAutor().startsWith(cad)).forEach(x -> 
+                dt.addRow(new Object[]{x.getId(), x.getNombreAutor(), x.getCanon().getPotencia(), x.getProyectil().getMasa(),x.getAmbiente().getResistenciaAire(),x.getAmbiente().getDensidadAire(), x.getAngulo()})
+        );
+    }
+    
+    void busquedaPorNombre(String nombre){
+        System.out.println("Buscar nombre: "+nombre);
+        DefaultTableModel dt = (DefaultTableModel) tabla1.getModel();
+        dt.setRowCount(0);
+        reporteCondicionesIniciales.getListCondIni().stream().filter(ci -> ci.getNombreAutor().equalsIgnoreCase(nombre.trim())).forEach(x -> 
+                dt.addRow(new Object[]{x.getId(), x.getNombreAutor(), x.getCanon().getPotencia(), x.getProyectil().getMasa(),x.getAmbiente().getResistenciaAire(),x.getAmbiente().getDensidadAire(), x.getAngulo()})
+        );
+    }
+    
+    void buscarPorId(String id){
+        DefaultTableModel dt = (DefaultTableModel) tabla1.getModel();
+        dt.setRowCount(0);
+        int disparoId = Integer.parseInt(id);
+        reporteCondicionesIniciales.getListCondIni().stream().filter(ci -> ci.getId()==disparoId).forEach(x -> 
+                dt.addRow(new Object[]{x.getId(), x.getNombreAutor(), x.getCanon().getPotencia(), x.getProyectil().getMasa(),x.getAmbiente().getResistenciaAire(),x.getAmbiente().getDensidadAire(), x.getAngulo()})
+        );
     }
 
 
@@ -40,17 +69,18 @@ public class condIniciales extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtIdDisparo = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton1 = new javax.swing.JRadioButton();
+        rbtId = new javax.swing.JRadioButton();
+        rbtNombre = new javax.swing.JRadioButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla1 = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
@@ -67,9 +97,9 @@ public class condIniciales extends javax.swing.JInternalFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Busqueda de condiciones iniciales");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtIdDisparo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtIdDisparoActionPerformed(evt);
             }
         });
 
@@ -90,13 +120,11 @@ public class condIniciales extends javax.swing.JInternalFrame {
         jPanel3.setBackground(new java.awt.Color(66, 75, 84));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Criterio de busqueda", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12), new java.awt.Color(255, 255, 255))); // NOI18N
 
-        buttonGroup1.add(jRadioButton2);
-        jRadioButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton2.setText("Por Nombre");
+        buttonGroup2.add(rbtId);
+        rbtId.setText("porId");
 
-        buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton1.setText("Por Id");
+        buttonGroup2.add(rbtNombre);
+        rbtNombre.setText("porNombre");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -104,23 +132,25 @@ public class condIniciales extends javax.swing.JInternalFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jRadioButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jRadioButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 4, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(rbtId)
+                    .addComponent(rbtNombre))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 4, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(95, 95, 95))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jRadioButton1)
+                        .addGap(12, 12, 12)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(rbtId)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jRadioButton2)
-                        .addGap(6, 6, 6))
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(rbtNombre)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -151,49 +181,51 @@ public class condIniciales extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(46, 46, 46)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(27, 27, 27)
-                                .addComponent(jButton1))))
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jLabel4)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 738, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2)))
+                        .addComponent(jScrollPane2))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(100, 100, 100)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel1))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(txtIdDisparo, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(27, 27, 27)
+                                        .addComponent(jButton1))))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                                .addComponent(jLabel2)
+                                .addGap(141, 141, 141)))))
                 .addContainerGap(26, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(167, 167, 167))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtIdDisparo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1)
                             .addComponent(jButton1))
                         .addGap(20, 20, 20)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
+                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(30, 30, 30)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel4)
@@ -216,17 +248,31 @@ public class condIniciales extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtIdDisparoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdDisparoActionPerformed
 
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtIdDisparoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        muestra();
+        
+        String idDisparo = txtIdDisparo.getText();
+        String nombre = txtNombre.getText();
+        if(rbtId.isSelected()){
+            if(idDisparo!=null&& !(idDisparo.isEmpty())){   
+                buscarPorId(idDisparo);
+            }
+        }else if(rbtNombre.isSelected()){
+            if(nombre!=null&& !(nombre.isEmpty())){  
+                busquedaPorNombre(nombre);
+            }
+        }else{
+           muestra(); 
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -234,15 +280,15 @@ public class condIniciales extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JRadioButton rbtId;
+    private javax.swing.JRadioButton rbtNombre;
     private javax.swing.JTable tabla1;
+    private javax.swing.JTextField txtIdDisparo;
+    private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 
 //    void muestra() {

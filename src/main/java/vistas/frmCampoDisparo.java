@@ -16,6 +16,7 @@ import java.awt.geom.Rectangle2D;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 import javax.swing.JPanel;
 import javax.swing.event.ChangeEvent;
@@ -508,7 +509,8 @@ public class frmCampoDisparo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSimularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimularActionPerformed
-        List<Point> points = new ArrayList<>();
+        if(!(cbxTipoCanon.getSelectedItem().toString().equalsIgnoreCase("Elegir")) && !(cbxTipoProyectil.getSelectedItem().toString().equalsIgnoreCase("Elegir"))){
+            List<Point> points = new ArrayList<>();
         SimulacionDisparo simulacionDisparo = new SimulacionDisparo();
         ResultadoDisparo resultadoDisparo = null;
         Ambiente ambiente=null;
@@ -548,13 +550,13 @@ public class frmCampoDisparo extends javax.swing.JFrame {
                 canon = c;
             }
         }
-
+        
         //Define Condiciones iniciales
-        condicionesIniciales =new CondicionesIniciales(canon, ambiente, proyectil, giro);
-//        condicionesIniciales.setAmbiente(ambiente);
-//        condicionesIniciales.setAngulo(giro);
-//        condicionesIniciales.setCanon(canon);
-//        condicionesIniciales.setProyectil(proyectil);
+        condicionesIniciales =new CondicionesIniciales();
+        condicionesIniciales.setAmbiente(ambiente);
+        condicionesIniciales.setAngulo(giro);
+        condicionesIniciales.setCanon(canon);
+        condicionesIniciales.setProyectil(proyectil);
 
         System.out.println("condicionesIniciales: " + condicionesIniciales);
 
@@ -571,6 +573,9 @@ public class frmCampoDisparo extends javax.swing.JFrame {
 
         llenarFormularioConResuelto(resultadoDisparo);
         
+        condicionesIniciales.setId(disparo.getIdDisparo());
+        condicionesIniciales.setNombreAutor(disparo.getAuthor().getUser());
+        
         double vi=resultadoDisparo.getVelocidadInicial();
         // Dibujar Trayectoria
         DibujarTrayectoria obj = new DibujarTrayectoria();
@@ -578,9 +583,16 @@ public class frmCampoDisparo extends javax.swing.JFrame {
         points = obj.obtenerPuntos(giro, vi);
 //        points.forEach(p -> System.out.println(p.toString()));
 
+        
+
         DibujarTrayectoria.dibujarTrayectoria(campoDisparo.getGraphics(), points);
 
         condIniciales iniciales = new condIniciales();
+        }else{
+            JOptionPane.showMessageDialog(null, "Porfavor Elegir el tipo de cañon o proyectil!");
+        }
+        
+        
 
     }//GEN-LAST:event_btnSimularActionPerformed
 
