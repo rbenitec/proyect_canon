@@ -752,7 +752,7 @@ public class frmCampoDisparo extends javax.swing.JFrame {
             gd.setColor(Color.WHITE);
 
             gd.drawLine(21, 0, 21, (int) d.getHeight());
-            gd.drawLine(0, 348, (int) d.getWidth(), 350);
+            gd.drawLine(0, 314, (int) d.getWidth(), 314);
         }
     }
 

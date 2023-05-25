@@ -7,13 +7,6 @@ import service.*;
 import util.dataUtil;
 
 public class SimulacionDisparo {
-
-    //Recuperar Data del Frame
-    //Mostrar desplazamineto del proyectil
-//    private Calculos calculos;
-//    private ReporteCondicionesIniciales condicionesIniciales;
-//    private ReporteResultadoDisparo reportResultadoDisparo;
-//    private double velocidadInicial;
     private double angulo;
 
     ReporteCondicionesIniciales reporteCondicionesIniciales = new ReporteCondicionesIniciales();

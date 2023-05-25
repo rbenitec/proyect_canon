@@ -20,7 +20,7 @@ public class condIniciales extends javax.swing.JInternalFrame {
     public condIniciales() {
         initComponents();
         
-        busquedaPorNombre("");
+        //busquedaPorNombre("");
         
     }
     

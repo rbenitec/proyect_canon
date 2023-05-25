@@ -1,29 +1,19 @@
 package vistas;
-
-import java.awt.Color;
-import java.awt.Graphics;
-import java.util.ArrayList;
-import java.util.List;
+import java.awt.Color;import java.awt.Graphics;import java.util.ArrayList;import java.util.List;
 
 public class DibujarTrayectoria {
-    
-    
     
     public List<Point> obtenerPuntos(double theta, double velIncial){
         System.out.println("Se llamo al metodo obtenerPuntos: Giro: "+theta);
         List<Point> points = new ArrayList<>();
         double gravity = 9.81;
-        double v0 = 80;
- 
+//        double v0 = 80;
+        double v0 = velIncial;
         double sinTheta = Math.sin(Math.toRadians(theta));
         double cosTheta = Math.cos(Math.toRadians(theta));
- 
         double t = 2 * v0 * sinTheta / gravity;
- 
         double deltaT = t / 1000;
- 
         double cnt = 0;
- 
         while (cnt < t) {
  
             double x = v0 * cosTheta * cnt;
@@ -32,7 +22,6 @@ public class DibujarTrayectoria {
  
             cnt += deltaT;
         }
- 
         return points;
     }
     
